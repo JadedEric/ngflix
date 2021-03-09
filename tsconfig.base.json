@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ngflix/ui": ["libs/ui/src/index.ts"],
+      "@ngflix/service": ["libs/service/src/index.ts"],
+      "@ngflix/model": ["libs/model/src/index.ts"],
+      "@ngflix/env/*": ["apps/web/src/environments/*"],
+      "@ngflix/core": ["libs/core/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

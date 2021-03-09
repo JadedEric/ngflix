@@ -1,0 +1,58 @@
+<!-- <div class="card-deck">
+    <div class="card col-sm-3" *ngFor="let movie of (movie$ | async).Search; let movieIndex = index;">
+        <img class="card-img-top" [src]="movie.Poster" alt="movie.name" />
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>    
+</div> -->
+<div class="container">
+    <ng-container *ngIf="!noData; else noDataEntries">
+        <ng-container *ngIf="movie$ | async as movies">
+            <div class="row mt-4">
+                <label>Number of movies {{movies.totalResults}}</label>
+            </div>
+            <div class="row">                    
+                <ng-container *ngFor="let movie of movies.Search; let movieIndex = index">
+                    <div class="col-sm mr-4">
+                        <div class="card" (click)="viewMovie(movie.imdbID);">
+                            <img class="card-img-top img-fluid" [src]="movie.Poster" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title">{{movie.Title}}</h4>
+                                <p class="card-text">Click to read more...</p>
+                                <p class="card-text"><small class="text-muted">Released in {{movie.Year}}</small></p>
+                            </div>
+                        </div> 
+                    </div>
+                    
+                    <ng-container *ngIf="(movieIndex + 1) % 4 === 0">
+                        <div class="w-100 mr-4 mb-4"></div>
+                    </ng-container>
+
+                    <ng-container *ngIf="(movieIndex + 1) % 10 === 0">
+                        <div class="col-sm mr-4"></div>
+                        <div class="col-sm mr-4"></div>
+                    </ng-container>
+
+                    <ng-container *ngIf="(movieIndex + 1) % 11 === 0">
+                        <div class="col-sm mr-4"></div>
+                    </ng-container>                    
+                </ng-container>
+            </div>  
+            
+            <div class="row mt-4 mb-4 d-flex justify-content-center">
+                <button type="button" class="btn btn-light mr-4" (click)="loadMore();">Load more...</button>
+            </div>
+
+            <div class="mt-4">&nbsp;</div>
+        </ng-container>
+    </ng-container>    
+</div>
+
+<ng-template #noDataEntries>
+    <div class="row mt-4">
+        No data to display
+    </div>
+</ng-template>
